@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  post 'questions/new', defaults: { format: 'twiml' }
+  post 'questions/ask', defaults: { format: 'twiml' }
+  post 'questions/call', defaults: { format: 'twiml' }
+
+  resources :questions
+
+  root "questions#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
