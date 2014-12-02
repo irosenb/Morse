@@ -31,6 +31,8 @@ gem 'twilio-ruby'
 gem 'figaro'
 gem 'twiml_template'
 gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'therubyracer'
 
 # Tests 
 gem 'rspec-rails'
