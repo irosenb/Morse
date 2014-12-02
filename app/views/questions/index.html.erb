@@ -1,8 +1,23 @@
-<h1 id="morse">Morse</h1>
+<h1 id="morse">Morse (demo)</h1>
 
-<div id="what">What's Morse about?</div>
+<div class="description">
+  <p id="what">
+    Could you hear the questions people were asking? Morse streams people's questions through a laptop, so that it can be heard by the entire audience.   
+  </p>
 
-<div id="video">Put a video Here!</div>
+  <p>Here's a little demo.</p>
+
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+<div id="player"></div>
+
+<p id="ask">Call in your question @ <a href="tel:+18484562816">(848) 456-2816</a></p>
 
 <button id="mute">Mute</button>
 
@@ -15,7 +30,6 @@
 </div>
 
 <script>
-
 	jQuery(document).ready(function($) {
 		Twilio.Device.setup("<%= token %>", {debug: true}) 
 
@@ -24,20 +38,46 @@
 		});
 
 		Twilio.Device.error(function (error) {
-       		$("#log").text("Error: " + error.message);
-      	});
+   		$("#log").text("Error: " + error.message);
+    });
  
-      	Twilio.Device.connect(function (conn) {
-        	$("#log").text("Successfully established call");
-      	});
- 
-      	Twilio.Device.disconnect(function (conn) {
-        	$("#log").text("Call ended");
-      	});
+  	Twilio.Device.connect(function (conn) {
+    	$("#log").text("Successfully established call");
+  	});
 
-      	Twilio.Device.incoming(function (conn) {
-      		$("#log").text("Incoming call from " + conn.parameters.From)
-      		conn.accept();
-      	})
+  	Twilio.Device.disconnect(function (conn) {
+    	$("#log").text("Call ended");
+  	});
+
+  	Twilio.Device.incoming(function (conn) {
+  		$("#log").text("Incoming call from " + conn.parameters.From)
+  		conn.accept();
+      conn.mute(true);
+  	})
 	});
+  
+  var tag = document.createElement('script');
+  tag.src = "//www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      videoId: 'w1-jasxb7NY',
+      playerVars: { 
+        start: 1110
+      },
+      events: {
+        'onReady': onReady
+      }
+    });
+  }
+
+  function onReady() {
+    
+  }
+
+
 </script>
