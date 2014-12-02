@@ -1,0 +1,3 @@
+twiml.Say "Hello Isaac."
+twiml.Say "Say your question. Note that the entire audience will hear your question."
+twiml.Record maxLength: '10', action: '/questions/ask', method: 'post'
