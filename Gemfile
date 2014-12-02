@@ -29,6 +29,8 @@ gem 'spring',        group: :development
 # Implement Twilio
 gem 'twilio-ruby'
 gem 'figaro'
+gem 'twiml_template'
+gem 'twitter-bootstrap-rails'
 
 # Tests 
 gem 'rspec-rails'
