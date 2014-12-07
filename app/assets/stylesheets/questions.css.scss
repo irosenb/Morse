@@ -5,3 +5,11 @@
 #log {
 	display: none;
 }
+
+@media only screen and (min-width: 768px) {
+	#video {
+		width: 50%;
+		margin: 0 auto;
+		padding-bottom: 30%;
+	}
+}
