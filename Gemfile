@@ -34,6 +34,9 @@ gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
 
+# Conferences
+gem 'simple_form' 
+
 # Tests 
 gem 'rspec-rails'
 
