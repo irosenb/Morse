@@ -12,24 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :open %><br>
-    <%= f.check_box :open %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.text_field :number %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.datetime_select :start_date %>
+    <%= f.datetime_select :start_date, ampm: true %>
   </div>
   <div class="field">
     <%= f.label :end_date %><br>
-    <%= f.datetime_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.datetime_select :end_date, ampm: true %>
   </div>
   <div class="actions">
     <%= f.submit %>
