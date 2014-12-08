@@ -1,29 +1,6 @@
-<%= form_for(@conference) do |f| %>
-  <% if @conference.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@conference.errors.count, "error") %> prohibited this conference from being saved:</h2>
-
-      <ul>
-      <% @conference.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.datetime_select :start_date, ampm: true %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.datetime_select :end_date, ampm: true %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for @conference do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date, ampm: true %>
+  <%= f.input :end_date, ampm: true %>
+  <%= f.button :submit %>
 <% end %>
