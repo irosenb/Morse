@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :conferences
+
   post 'questions/new', defaults: { format: 'twiml' }
   post 'questions/ask', defaults: { format: 'twiml' }
   post 'questions/call', defaults: { format: 'twiml' }
