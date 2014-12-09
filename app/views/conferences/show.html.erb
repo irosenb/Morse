@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Conference -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Open:</strong>
-  <%= @conference.open %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:open) %>:</strong></dt>
+  <dd><%= @conference.open %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd><%= @conference.number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+  <dd><%= @conference.start_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
+  <dd><%= @conference.end_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @conference.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sid) %>:</strong></dt>
+  <dd><%= @conference.sid %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:token) %>:</strong></dt>
+  <dd><%= @conference.token %></dd>
+</dl>
 
-<p>
-  <strong>Number:</strong>
-  <%= @conference.number %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @conference.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @conference.end_date %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @conference.name %>
-</p>
-
-<%= link_to 'Edit', edit_conference_path(@conference) %> |
-<%= link_to 'Back', conferences_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              conferences_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_conference_path(@conference), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              conference_path(@conference),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
