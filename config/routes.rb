@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :conferences
+  resources :conferences do
+    resources :questions, shallow: true
+    post 'questions/new', defaults: { format: 'twiml' }
+    post 'questions/ask', defaults: { format: 'twiml' }
+    post 'questions/call', defaults: { format: 'twiml' }
+  end
 
-  post 'questions/new', defaults: { format: 'twiml' }
-  post 'questions/ask', defaults: { format: 'twiml' }
-  post 'questions/call', defaults: { format: 'twiml' }
 
   resources :questions
 
