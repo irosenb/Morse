@@ -39,6 +39,8 @@ gem 'simple_form'
 
 # Tests 
 gem 'rspec-rails'
+gem 'vcr'
+gem 'webmock'
 
 group :development do
   gem 'better_errors'
