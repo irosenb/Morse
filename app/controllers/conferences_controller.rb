@@ -10,6 +10,7 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
+    @twilio = Twilio::REST::Client.new @conference.sid, @conference.token
   end
 
   # GET /conferences/new

@@ -1,4 +1,4 @@
 twiml.Say "Ask your question. Note that your question will be heard live by the audience"
-twiml.Dial callerId: "+18484562816" do |d|
-  d.Client "isaac"
+twiml.Dial callerId: "#{@conference.number}" do |d|
+  d.Client "#{@conference.name}"
 end

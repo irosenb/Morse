@@ -1,7 +1,9 @@
 class QuestionsController < ApplicationController
   def index 
-    sid = ENV['TWILIO_SID']
-    auth_token = ENV['TWILIO_TOKEN']
+    @conference = Conference.find(params[:conference_id])
+
+    sid = @conference.sid
+    auth_token = @conference.token
 
     capability = Twilio::Util::Capability.new sid, auth_token
     capability.allow_client_incoming "isaac"
@@ -12,9 +14,7 @@ class QuestionsController < ApplicationController
   def new
   end
 
-  def ask
-  end
-
   def call
+    @conference = Conference.find(params[:conference_id])
   end
 end
