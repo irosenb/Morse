@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210052134) do
+ActiveRecord::Schema.define(version: 20141210053443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,10 @@ ActiveRecord::Schema.define(version: 20141210052134) do
     t.string   "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "conference_id"
   end
+
+  add_index "twilio_accounts", ["conference_id"], name: "index_twilio_accounts_on_conference_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
