@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'welcome/show'
+
+  root 'welcome#demo'
+
   resources :conferences do
     resources :questions, shallow: true
     get 'twilio_accounts/call', defaults: { format: 'twiml' }
