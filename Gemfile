@@ -39,8 +39,11 @@ gem 'simple_form'
 
 # Tests 
 gem 'rspec-rails'
-gem 'vcr'
-gem 'webmock'
+gem 'factory_girl_rails', group: [:development, :test]
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
 
 group :development do
   gem 'better_errors'
