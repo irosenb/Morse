@@ -10,7 +10,9 @@ class TwilioAccount < ActiveRecord::Base
     self.token = account.auth_token
 
     phone_number = first_number.phone_number
-    account.incoming_phone_numbers.create(phone_number: phone_number)
+    link = conference_link(conference)
+    account.incoming_phone_numbers.create(phone_number: phone_number, voice_url: link, voice_method: "GET")
+    
     self.phone_number = phone_number
   end
 
@@ -20,6 +22,10 @@ class TwilioAccount < ActiveRecord::Base
   end
 
   private
+
+  def conference_link(conference)
+    Rails.application.routes.url_helpers.conference_questions_call_url(conference, host: "morse-demo.herokuapp.com")
+  end
 
   def first_number
     TWILIO.available_phone_numbers.get('US').local.list().first

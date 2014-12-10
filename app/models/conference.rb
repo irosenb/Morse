@@ -1,7 +1,7 @@
 class Conference < ActiveRecord::Base
   has_many :questions
-  has_one  :twilio_account
-  delegate :sid, :token, :phone_number, to: :twilio_account
+  has_one  :twilio_account, dependent: :destroy 
+  delegate :sid, :token, :phone_number, to: :twilio_account, allow_nil: true
 
   after_create :create_account 
 
