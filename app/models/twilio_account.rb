@@ -3,9 +3,11 @@ class TwilioAccount < ActiveRecord::Base
   before_create :set_account
   before_destroy :close_account 
 
+  private
+
   def set_account
     conference = Conference.find(self.conference_id)
-    account = TWILIO.accounts.create(friendly_name: conference.name)
+    account = create_subaccount(conference.name)
     self.sid = account.sid
     self.token = account.auth_token
 
@@ -21,7 +23,9 @@ class TwilioAccount < ActiveRecord::Base
     account.update(status: "closed") 
   end
 
-  private
+  def create_subaccount(name)
+    TWILIO.accounts.create(friendly_name: name)
+  end
 
   def conference_link(conference)
     Rails.application.routes.url_helpers.conference_questions_call_url(conference, host: "morse-demo.herokuapp.com")
