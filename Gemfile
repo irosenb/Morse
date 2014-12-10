@@ -38,9 +38,10 @@ gem 'therubyracer'
 gem 'simple_form' 
 
 # Tests 
-gem 'rspec-rails'
 gem 'factory_girl_rails', group: [:development, :test]
 group :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'vcr'
   gem 'webmock'
 end
