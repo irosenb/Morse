@@ -11,21 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210053443) do
+ActiveRecord::Schema.define(version: 20141210160155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conferences", force: true do |t|
     t.boolean  "open",       default: false
-    t.string   "number"
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sid"
-    t.string   "token"
   end
 
   create_table "products", force: true do |t|
