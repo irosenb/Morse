@@ -28,7 +28,7 @@ class TwilioAccount < ActiveRecord::Base
   end
 
   def conference_link(conference)
-    Rails.application.routes.url_helpers.conference_questions_call_url(conference, host: "morse-demo.herokuapp.com")
+    Rails.application.routes.url_helpers.conference_twilio_accounts_call(conference, host: "morse-demo.herokuapp.com")
   end
 
   def first_number

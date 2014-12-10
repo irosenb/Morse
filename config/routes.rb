@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'twilio_accounts/call'
 
   resources :conferences do
     resources :questions, shallow: true
-    get 'questions/call'
+    get 'twilio_accounts/call', defaults: { format: 'twiml' }
   end
 
   root "questions#index"
