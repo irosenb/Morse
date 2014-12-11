@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-
-  get 'welcome/show'
-
   root 'welcome#demo'
+  get 'welcome/call', defaults: { format: 'twiml' } 
 
   resources :conferences do
     resources :questions, shallow: true
     get 'twilio_accounts/call', defaults: { format: 'twiml' }
   end
-
-  root "questions#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

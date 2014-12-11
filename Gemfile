@@ -39,6 +39,7 @@ gem 'simple_form'
 
 # Tests 
 gem 'factory_girl_rails', group: [:development, :test]
+
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
