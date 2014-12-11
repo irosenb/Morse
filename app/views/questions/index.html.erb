@@ -9,3 +9,33 @@
   <li class="list-group-item"></li>
   <li class="list-group-item"></li>
 </ul>
+
+<div id="log"></div>
+
+<script>
+  jQuery(document).ready(function($) {
+    Twilio.Device.setup("<%= token %>", {debug: true}) 
+
+    Twilio.Device.ready(function (device) {
+      $("#log").text("Ready!");
+    });
+
+    Twilio.Device.error(function (error) {
+      $("#log").text("Error: " + error.message);
+    });
+ 
+    Twilio.Device.connect(function (conn) {
+      $("#log").text("Successfully established call");
+    });
+
+    Twilio.Device.disconnect(function (conn) {
+      $("#log").text("Call ended");
+    });
+
+    Twilio.Device.incoming(function (conn) {
+      $("#log").text("Incoming call from " + conn.parameters.From)
+      conn.accept();
+      conn.mute(true);
+    })
+  });
+</script>
