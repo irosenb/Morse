@@ -1,2 +1,2 @@
 twiml.Say "Hello there this is a test."
-twiml.Enqueue @conference.name, action: "/conferences/#{@conference.id}/twilio_accounts/call", method: "GET" 
+twiml.Enqueue @conference.name

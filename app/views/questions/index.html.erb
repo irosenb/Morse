@@ -10,14 +10,31 @@
   <li class="list-group-item"></li>
 </ul>
 
+<!-- <a href="#" id="enable" class="btn btn-primary" data-loading-text="Loading…" autocomplete="off" data-toggle="button" aria-pressed="true">Enable Questions</a> -->
+
+Questions? <input id="enable" type="checkbox" name="my-checkbox" data-animate='false' disabled>
+
+
 <div id="log"></div>
 
 <script>
   jQuery(document).ready(function($) {
+    $("#enable").bootstrapSwitch();
+
+    $('#enable').on('switchChange.bootstrapSwitch', function(event, state) {
+      if (state == true) {
+        Twilio.Device.connect();
+      } else {
+        console.log("hey");
+        Twilio.Device.disconnectAll();
+      }
+    });
+
     Twilio.Device.setup("<%= token %>", {debug: true}) 
 
     Twilio.Device.ready(function (device) {
       $("#log").text("Ready!");
+      $("#enable").bootstrapSwitch('disabled', false);
     });
 
     Twilio.Device.error(function (error) {
