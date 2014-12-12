@@ -1,0 +1,4 @@
+twiml.Dial do |r|
+  r.Queue @conference.name
+end
+twiml.Redirect method: "GET"
