@@ -1,4 +1,4 @@
 twiml.Dial do |r|
-  r.Queue @conference.name
+  r.Queue @conference.name, url: url_for(conference_twilio_accounts_call_path)
 end
 twiml.Redirect method: "GET"
