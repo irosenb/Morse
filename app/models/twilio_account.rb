@@ -15,6 +15,9 @@ class TwilioAccount < ActiveRecord::Base
     link = conference_link(conference)
     account.incoming_phone_numbers.create(phone_number: phone_number, voice_url: link, voice_method: "GET")
     
+    url = dequeue_link(conference)
+    create_app(url)
+    
     self.phone_number = phone_number
   end
 
@@ -23,8 +26,16 @@ class TwilioAccount < ActiveRecord::Base
     account.update(status: "closed") 
   end
 
+  def create_app(url)
+    account.applications.create(friendly_name: self.name, voice_url: url, voice_method: "GET")
+  end
+
   def create_subaccount(name)
     TWILIO.accounts.create(friendly_name: name)
+  end
+
+  def dequeue_link(conference)
+    Rails.application.routes.url_helpers.conference_twilio_accounts_dequeue(conference, host: "morse-demo.herokuapp.com")
   end
 
   def conference_link(conference)
