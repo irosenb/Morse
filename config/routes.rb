@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     get 'twilio_accounts/call', defaults: { format: 'twiml' }
     get 'twilio_accounts/queue', defaults: { format: 'twiml' }
     get 'twilio_accounts/dequeue', defaults: { format: 'twiml' }
-    post 'twilio_accounts/dequeue', defaults: { format: 'twiml' }
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
