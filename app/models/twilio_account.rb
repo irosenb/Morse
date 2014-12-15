@@ -7,42 +7,15 @@ class TwilioAccount < ActiveRecord::Base
 
   def set_account
     conference = Conference.find(self.conference_id)
-    account = create_subaccount(conference.name)
+    account = Subaccount.create(conference.name)
+    
     self.sid = account.sid
     self.token = account.auth_token
-
-    phone_number = first_number.phone_number
-    link = conference_link(conference)
-    account.incoming_phone_numbers.create(phone_number: phone_number, voice_url: link, voice_method: "GET")
-    
-    url = dequeue_link(conference)
-    create_app(url)
-    
-    self.phone_number = phone_number
+    self.phone_number = PhoneNumber.new(conference, account).create
+    self.app_sid = Twilio::App.new(conference, account).create
   end
 
   def close_account
-    account = TWILIO.accounts.get(self.sid)
-    account.update(status: "closed") 
-  end
-
-  def create_app(url)
-    account.applications.create(friendly_name: self.name, voice_url: url, voice_method: "GET")
-  end
-
-  def create_subaccount(name)
-    TWILIO.accounts.create(friendly_name: name)
-  end
-
-  def dequeue_link(conference)
-    Rails.application.routes.url_helpers.conference_twilio_accounts_dequeue(conference, host: "morse-demo.herokuapp.com")
-  end
-
-  def conference_link(conference)
-    Rails.application.routes.url_helpers.conference_twilio_accounts_call(conference, host: "morse-demo.herokuapp.com")
-  end
-
-  def first_number
-    TWILIO.available_phone_numbers.get('US').local.list().first
+    Subaccount.destroy(self.sid)
   end
 end

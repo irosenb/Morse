@@ -38,7 +38,6 @@ gem 'therubyracer'
 gem 'simple_form' 
 gem "bootstrap-switch-rails"
 
-
 # Tests 
 gem 'factory_girl_rails', group: [:development, :test]
 
