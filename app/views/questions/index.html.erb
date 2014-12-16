@@ -18,42 +18,4 @@
 
 <div id="log"></div>
 
-<script>
-  jQuery(document).ready(function($) {
-    $("#enable").bootstrapSwitch();
-
-    $('#enable').on('switchChange.bootstrapSwitch', function(event, state) {
-      if (state == true) {
-        Twilio.Device.connect();
-      } else {
-        console.log("hey");
-        Twilio.Device.disconnectAll();
-      }
-    });
-
-    Twilio.Device.setup("<%= token %>", {debug: true}) 
-
-    Twilio.Device.ready(function (device) {
-      $("#log").text("Ready!");
-      $("#enable").bootstrapSwitch('disabled', false);
-    });
-
-    Twilio.Device.error(function (error) {
-      $("#log").text("Error: " + error.message);
-    });
- 
-    Twilio.Device.connect(function (conn) {
-      $("#log").text("Successfully established call");
-    });
-
-    Twilio.Device.disconnect(function (conn) {
-      $("#log").text("Call ended");
-    });
-
-    Twilio.Device.incoming(function (conn) {
-      $("#log").text("Incoming call from " + conn.parameters.From)
-      conn.accept();
-      conn.mute(true);
-    })
-  });
-</script>
+<%= render 'twilio.js' %>

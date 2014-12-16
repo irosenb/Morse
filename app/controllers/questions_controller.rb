@@ -6,10 +6,9 @@ class QuestionsController < ApplicationController
     auth_token = @conference.token
 
     capability = Twilio::Util::Capability.new sid, auth_token
-    capability.allow_client_incoming @conference.name
-    capability.allow_client_outgoing "APcfdb3515c62f13492b7e4e0df4dddf95"
-    token = capability.generate
-    render "index", :locals => { token: token }
+    capability.allow_client_outgoing @conference.app_sid
+    @token = capability.generate
+    render "index"
   end
 
   def new
