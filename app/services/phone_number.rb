@@ -18,7 +18,7 @@ class PhoneNumber
   end
 
   def conference_link
-    conference_twilio_accounts_call_url(@conference, host: "morse-demo.herokuapp.com")
+    conference_twilio_accounts_queue_url(@conference, host: "morse-demo.herokuapp.com")
   end
 end
 
