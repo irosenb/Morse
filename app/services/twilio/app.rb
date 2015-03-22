@@ -9,7 +9,7 @@ module Twilio
     end
 
     def create
-      app = @account.applications.create(friendly_name: @conference.name, voice_url: dequeue_link, voice_method: "GET")
+      app = @account.applications.create(friendly_name: @conference.name, voice_url: dequeue_link, voice_method: "POST")
       app.sid
     end
     

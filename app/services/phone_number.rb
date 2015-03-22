@@ -9,7 +9,7 @@ class PhoneNumber
 
   def create
     phone_number = first_number
-    @account.incoming_phone_numbers.create(phone_number: phone_number, voice_url: conference_link, voice_method: "GET") 
+    @account.incoming_phone_numbers.create(phone_number: phone_number, voice_url: conference_link, voice_method: "POST") 
     phone_number
   end
 
