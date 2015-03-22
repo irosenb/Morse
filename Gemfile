@@ -33,6 +33,8 @@ gem 'twiml_template'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
+gem 'unicorn'
+gem "unicorn-rails"
 
 # Conferences
 gem 'simple_form' 
