@@ -1,5 +1,4 @@
 class Conference < ActiveRecord::Base
-  has_many :questions
   has_one  :twilio_account, dependent: :destroy 
   delegate :sid, 
            :token, 
